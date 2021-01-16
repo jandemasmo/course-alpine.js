@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4 - Alpine.js - x-model</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<body>
+    <div x-data="mainData()">
+        <p x-text="texto"></p>
+        <input type="text" x-model="texto"><br><br>
+        <input type="text" x-model.debounce.750="texto"><br><br>
+        <button x-on:click="onClick()">Show texto variable</button>
+    </div>
+
+
+<hr><hr>
+
+
+    <div x-data="form()">
+        <p x-text="persona.firstName"></p>
+        <p x-text="persona.lastName"></p>
+        <p x-text="persona.age"></p>
+        <p x-text="persona.email"></p>
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" x-model="persona.firstName">
+        </div><br>
+
+        <div class="form-group">
+            <label>Sobrenome</label>
+            <input type="text" x-model="persona.lastName">
+        </div><br>
+
+        <div class="form-group">
+            <label>Idade</label>
+            <input type="text" x-model="persona.age">
+        </div><br>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" x-model="persona.email">
+        </div><br>
+
+        <button x-on:click="sendForm()">Enviar Form</button>
+    </div>
+
+    <script>
+        //o x-model mantem os dados inputados diretamente sincronizados com o elemento
+       function  mainData(){
+           return {
+                texto: null,
+                onClick: function(){
+                    console.log(this.texto);
+                    setTimeout(() => this.texto = "valor do setTimeOut", 3000)
+                }
+           }
+       }
+
+       function form(){
+           return {
+               persona: {},
+               sendForm: function(){
+                   console.log({...this.persona})
+               }
+               
+           }
+       }
+       
+    </script>
+</body>
+</html>
