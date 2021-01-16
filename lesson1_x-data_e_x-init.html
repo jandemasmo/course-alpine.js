@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1 - Alpine.js - x-data  & x-init</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<body>
+    <div x-data="{name: 'Jande', email: 'jande@gmail.com'}"   x-init="name =  'Jande Masmo'">
+        <p x-text="name"></p>
+        <p x-text="email"></p>
+    </div>
+    <hr><hr>
+    <div x-data="mainData()" x-init="start()">
+        <p x-text="usuario"></p>
+        <p x-text="email"></p>
+    </div>
+
+    <script>
+        //Aqui vemos duas formas de usar as diretivas x-data e x-init
+        //as informações podem ser passadas inline na diretiva
+        //ou podem ser passadas através de uma função
+        function mainData(){
+            return {
+                usuario: null,
+                email:null,
+                start: function(){
+                    console.log('test message');
+                    this.usuario = 'Camila Ariadne';
+                    this.email = 'camilaasf@gmail.com'
+                } 
+            }
+        }
+    </script>
+</body>
+</html>
