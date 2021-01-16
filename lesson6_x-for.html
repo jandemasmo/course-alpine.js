@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4 - Alpine.js - x-model</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<style>
+    .employeesList{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .employee{
+        width: 200px;
+        padding: 10px 30px;
+        border: 1px solid rebeccapurple;
+        margin: 10px;
+    }
+</style>
+<body>
+    <div x-data="mainData()">
+        <ul>
+            <template x-for="animal in animals" :key="animal">
+                <li x-text="animal"></li>
+            </template>
+        </ul>
+    </div>
+    <hr><hr>
+    <div x-data="employeesList()" class="employeesList">
+        <template x-for="employee in employees" :key="employee">
+            <div class="employee">
+                <h3 x-text="employee.firstName +' '+employee.lastName "></h3>
+                <p>Salário <span x-text="employee.salary"></span>$</p>
+                <p x-text="employee.departament"></p>
+            </div>
+        </template>
+    </div>
+
+    <script>
+        //usamos a diretiva x-for para percorrer uma array ou objeto e colocar cada item dentro de um elemento
+        //essa diretiva deve ser passada dentro de uma tag template
+       function  mainData(){
+          return {
+           animals: ['cachorro', 'gato', 'passaro', 'urso', 'leopardo']
+            
+          }
+       }
+
+       function employeesList(){
+           return {
+               employees: [
+               {firstName: 'Jande', lastName:'Masmo', departament:'Developer WEB', salary: 3000},
+               {firstName: 'Pietra', lastName:'Fernandes', departament:'Marketing', salary: 2000},
+               {firstName: 'Thea', lastName:'Alves', departament:'doctor', salary: 9000},
+               {firstName: 'Alice', lastName:'the chains', departament:'veterinay', salary: 5000},
+               ]
+           }
+       }
+       
+    </script>
+</body>
+</html>
