@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3 - Event manage</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <style>
+       button, input{
+           padding:10px;
+           width:100px;
+       }
+    </style>
+</head>
+<body>
+    <div x-data="mainData()">
+        <p>Event onClick, onMouseOver, onMouseOut</p>
+        <button x-on:click="onClick(event)"   x-on:mouseover="onMouseOver(event)"
+        x-on:mouseout="onMouseOut(event)" >TOUCH</button>
+    </div>
+
+    <br><br>
+
+    <div x-data="mainDataSecondary()">
+        <p x-text="texto"></p>
+        <div>
+            <label>Event Key Press ENTER</label><br>
+            <input type="text" x-on:keydown.enter="onKeyPressEnter(event)">
+        </div>
+            <br><br>
+        <div>
+            <label>Event Input</label><br>
+            <input type="text" x-on:input="onInput(event)">
+        </div>
+       
+            <br><br>
+        <div>
+            <label>Prevent</label><br>
+            <input type="checkbox" x-on:click.prevent>
+        </div>
+    </div>
+    
+   <script>
+       
+       function mainData(){
+           return {
+                onClick: function(event){
+                    console.log('You clicked!');
+                    console.log(event.target)
+                },
+                onMouseOver: function(event){
+                    event.target.style.backgroundColor = 'red';
+                    event.target.style.color = 'white';
+                },
+                onMouseOut: function(event){
+                    event.target.style.backgroundColor = 'green';
+                    event.target.style.color = 'red';
+                }
+           }
+       }
+
+       function mainDataSecondary(){
+           return {
+               texto: '',
+               onKeyPressEnter: function(event){
+                    this.texto = event.target.value;
+               },
+               onInput: function(event){
+                    this.texto = event.target.value;
+               }
+           }
+       }
+
+    
+   </script>
+</body>
+</html>
