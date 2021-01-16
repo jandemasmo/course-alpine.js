@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2 - Alpine.js - x-show  & x-bind</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <style>
+        .active{
+            border: 3px solid red;
+            background-color: #1499e6;
+        }
+        .inactive{
+            border: 3px solid rgb(14, 201, 55);
+            background-color: #e6148f;
+        }
+    </style>
+</head>
+<body>
+    <div x-data="mainData()">
+        <button x-on:click="open = !open">MUDAR</button>
+        <p x-text="open"></p>
+        <P x-show="open">Olá Terra</P>
+        <p x-bind:class="{'active': open, 'inactive': !open}">Aplicando class com style</p>
+        <button x-bind:disabled="open">TOUCH</button>
+    </div>
+   <!--
+       Nessa aula trabalhamos com as diretivas x-on que usamos para aplicar eventos 
+       em função de alguma condição ou valor.
+
+       Usamos o x-show que podemos para alternar entre display:none no elemento 
+       dependendo da condição aplicada.
+
+       Usamos também o x-bind que usamos para aplicar um valor padrão
+       em um atributo html em função do javascript.
+   -->
+</body>
+</html>
