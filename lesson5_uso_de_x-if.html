@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4 - Alpine.js - x-model</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<style>
+    .product{
+        width: 200px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    p{
+        width: 100%;
+        text-align: center;
+    }
+    .available{
+        background-color: green;
+    }
+    .not-available{
+        background-color: red;
+    }
+</style>
+<body>
+    <div x-data="mainData()">
+        <button x-on:click="open = !open">STATUS SHOW/HIDE</button><br><br>
+        <template x-if="open">
+            <div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, iste.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, iste.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, iste.</p>
+            </div>
+        </template>
+
+        <div class="product">
+            <h3 x-text="product.name"></h3>
+            <h3 x-text="product.price"></h3>
+            <template x-if="product.active">
+                <div>
+                    <p class="available">Available</p>
+                    <button>BUY</button>
+                </div>
+            </template>
+            <template x-if="!product.active">
+                <div>
+                    <p class="not-available">Not Available</p>
+                </div>
+            </template>
+        </div>
+    </div>
+   
+
+    <script>
+        //com x-if mediante uma condição podemos mostrar ou ocultar elementos 
+       function  mainData(){
+          return {
+            open: false,
+            product: {
+                name: 'macbook',
+                price: '$1000',
+                active: false,
+            }
+          }
+       }
+       
+    </script>
+</body>
+</html>
