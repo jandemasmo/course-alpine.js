@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rick and Morty Project</title>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        .banner-image{
+            margin: 0 auto;
+            width: 300px;
+            background: url('rick_and_morty_image.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 300px;
+        }
+        header{
+            padding: 30px;
+            border-top:10px solid  #019db4;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+        header img{
+            max-width: 300px;
+            margin: 0 auto;
+            opacity: 10;
+        }
+        .changePage{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px 0;    
+        }
+        .changePage p{
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #019db4;
+        }
+        .changePage button{
+            width: 100px;
+            padding: 5px;
+            background-color:#019db4;
+            border:none;
+            color: #ffffff;
+        }
+        .chars-list{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .chars{
+            margin: 10px;
+            position: relative;
+        }
+        .charsContent{
+            background-color:#019db4 ;
+            color:black;
+            padding: 10px;
+        }
+        .chars .specie{
+            position: absolute;
+            top:0;
+            right:0;
+            background-color: #019db4;
+            color: white;
+            padding: 5px;
+        }
+        footer{
+            text-align: center;
+            padding: 50px 0;
+            background-color: #019db4;
+            color: black;
+            margin-top: 30px;
+        }
+        footer p{
+            margin: 10px 0;
+        }
+        footer a{
+            text-decoration: none;
+            color: black;
+            font-weight: 900;
+        }
+        footer b{
+            border-bottom: 2px solid #019db4;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="banner-image"></div>
+    <header>
+        <img src="logo_rick_and_morty.png" alt="">
+    </header>
+    <main x-data="mainData()" x-init="fetch(url).then(response => response.json()).then(json => {
+        characters = json.results; numPages = json.info.pages; })">
+        <section class="changePage">
+            <p><span x-text="numPages"></span> Páginas totais</p>
+            <div>
+                <button x-on:click="changePage('prev')"><i class="fas fa-arrow-left"></i>   PREV</button>
+                <button x-on:click="changePage('next')">NEXT <i class="fas fa-arrow-right"></i> </button>
+            </div>
+        </section>
+        
+        <section class="chars-list">
+            <template x-for="char in characters">
+                <div class="chars">
+                    <img x-bind:src="char.image"  alt="">
+                    <div class="charsContent">
+                        <h4 x-text="char.name"></h4>
+                        <p class="origin" x-text="char.origin.name"></p>
+                        <p class="specie" x-text="char.species"></p>
+                    </div>  
+                </div>
+            </template>
+        </section>
+    </main>
+    <footer>
+        <p>Por <b> Jande Masmo</b> </p>
+        <p>API por <a target="_blank" href="https://rickandmortyapi.com/documentation">Axel Fuhrmann</a></p>
+        <p>Conhecendo a simplicidade do <a target="_blank"href="https://github.com/alpinejs/alpine">alpine.js</a></p>
+    </footer>
+
+    <script>
+        function mainData(){
+            return {
+                url: 'https://rickandmortyapi.com/api/character',
+                characters: [],
+                numPages: 0,
+                page: 1,
+                changePage: async function(type){
+                    if(type === 'next'){
+                        this.page++;
+                    }else if(type === 'prev'){
+                        this.page--;
+                    }
+                    const response = await fetch(`${this.url}?page=${this.page}`);
+                    this.characters = (await response.json()).results;
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
