@@ -24,6 +24,13 @@
         <p x-bind:class="{'active': open, 'inactive': !open}">Aplicando class com style</p>
         <button x-bind:disabled="open">TOUCH</button>
     </div>
+    <script>
+        function mainData(){
+            return {
+                open:false
+            }
+        }
+    </script>
    <!--
        Nessa aula trabalhamos com as diretivas x-on que usamos para aplicar eventos 
        em função de alguma condição ou valor.

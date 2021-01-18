@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7 - Alpine.js - x-transition</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<style>
+    .template{
+        background-color: black;
+        color: white;
+        padding: 10px;
+    }
+</style>
+<body>
+<!--
+Abaixo vemos como usar a diretiva transition do alpine.js
+usamos em conjunto com tailwind css
+existem 6 diretiva de trasição diferentes
+
+:enter	Aplicado durante toda a fase de entrada.
+:enter-start	Adicionado antes que o elemento seja inserido, removido um frame após o elemento ser inserido.
+:enter-end	Adicionado um frame após a inserção do elemento (ao mesmo tempo em que o enter-start é removido), removido quando a transição/animação termina.
+:leave	Aplicado durante toda a fase de partida.
+:leave-start	Adicionado imediatamente quando uma transição de saída é acionada, removida após um frame.
+:leave-end	Adicionado um frame depois que uma transição de saída é acionada (ao mesmo tempo em que o leave-start é removido), removido quando a transição/animação termina.
+-->
+
+    <div x-data="{open: true}">
+        <button x-on:click="open = !open">TOUCH</button><br><br>
+        <template x-if="open" >
+            <div class="template"
+                x-transition:enter="transition-all ease-out duration-500"
+                x-transition:enter-start="opacity-0 transform scale-75"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                x-transition:leave="transition-all ease-in duration-500"
+                x-transition:leave-start="opacity-100 transform scale-100"
+                x-transition:leave-end="opacity-0 transform scale-75"
+            >
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex, quisquam?</p>
+            </div>
+        </template>
+    </div>
+    
+</body>
+</html>
