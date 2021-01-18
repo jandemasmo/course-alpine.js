@@ -1,6 +1,5 @@
 # Curso de alpine.js
 
-[alpine.js](alpine.js.png)
 [Alpine.js](https://github.com/alpinejs/alpine/) é um micro framework que pode ajudar a
 colocar um pouco de reatividade em seus projetos de forma simples e rapida.
 
@@ -32,10 +31,12 @@ Abaixo um exemplo feito no curso.
 		existem 6 diretiva de trasição diferentes
 		:enter	Aplicado durante toda a fase de entrada.
 		:enter-start	Adicionado antes que o elemento seja inserido, removido um frame após o elemento ser inserido.
-		:enter-end	Adicionado um frame após a inserção do elemento (ao mesmo tempo em que o enter-start é removido), removido quando a transição/animação termina.
+		:enter-end	Adicionado um frame após a inserção do elemento (ao mesmo tempo em que o enter-start é removido), 
+		removido quando a transição/animação termina.
 		:leave	Aplicado durante toda a fase de partida.
 		:leave-start	Adicionado imediatamente quando uma transição de saída é acionada, removida após um frame.
-		:leave-end	Adicionado um frame depois que uma transição de saída é acionada (ao mesmo tempo em que o leave-start é removido), removido quando a transição/animação termina.
+		:leave-end	Adicionado um frame depois que uma transição de saída é acionada (ao mesmo tempo em que o 
+		leave-start é removido), removido quando a transição/animação termina.
 		-->
 		<div x-data="{open: true}">
 		<button x-on:click="open = !open">TOUCH</button><br><br>
@@ -62,8 +63,8 @@ Abaixo um exemplo feito no curso.
 Esse curso foi feito usando como base o curso do canal 10 minutos progamando no youtube.
 * [Canal 10 minutos progamando](https://www.youtube.com/c/10MinutosProgramando)
 
-Você pode acessar o projeto um dos projetos desse curso através do link abaixo. 
-Nesse projeto usamos uma consumimos uma API do Rick and Morty usando o alpine.js
+Você pode acessar um dos projetos desse curso através do link abaixo. 
+Nesse projeto consumimos uma API do Rick and Morty usando o alpine.js
 todo projeto foi feito inline visando facilitar o estudo e analise do funcionamento do código.
 * [Project Rick and Morty](https://project-rick-and-morty-api.jandemasmo.com/)
 
@@ -74,20 +75,26 @@ A documentação oficial do alpine.js pode ser acessada abaixo.
 ## Instalação
 
 O alpine.js pode ser instalado usando a CDN abaixo.
+
 `<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>`
 
 Para ambiente de produção, é recomendado fixar o número da versão específico no link para evitar 
 problemas inesperadas das versões mais recentes. Por exemplo, para usar a versão 2.8.0:
+
 `<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>`
 
 **Via npm:** Instale o pacote pelo npm.
+
 `npm i alpinejs`
 
 Incluir no script.
+
 `import 'alpinejs';`
 
 **Para suportar IE11** Usar os seguintes scripts.
+
 `<script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>`
+
 `<script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>`
 
 O padrão acima é o padrão de módulo/nomodule que resulta num pacote moderno carregado automaticamente 
